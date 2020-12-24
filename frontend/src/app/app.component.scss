@@ -1,0 +1,60 @@
+@import "./styling/variables.scss";
+.banner {
+    padding: 0;
+    margin: 0;
+    height: 500px;
+    background: url("../assets/space.jpg") no-repeat center;
+    background-size: 100% 100%;
+    width: 100%;
+
+    .banner-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+
+        h1 {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            color: $white;
+            font-size: 48px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: $white;
+            font-weight: lighter;
+            font-style: italic;
+            font-size: 18px;
+        }
+    }
+}
+
+@mixin smoll {
+    @media (max-width: 1500px) {
+        @content;
+    }
+}
+
+.shop {
+    margin-top: 2em;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+
+    h2 {
+        font-weight: bold;
+        font-size: 28px;
+        color: $grey;
+    }
+
+    .items {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        @include smoll {
+            grid-template-columns: 1fr;
+        }
+    }
+}

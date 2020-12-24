@@ -1,0 +1,49 @@
+@import "../../styling/variables.scss";
+
+.card {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    height: 200px;
+    border-radius: 16px;
+    background-color: darken($white, 3);
+    max-width: 500px;
+    margin: 1em;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, .1);
+
+    .image-container {
+        height: 100%;
+
+        img {
+            height: 100%;
+            border-radius: 16px 0 0 16px;
+        }
+    }
+
+    .card-content {
+        padding: .2em 1em;
+        
+        .card-header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            .title {
+                font-size: 20px;
+            }
+
+            .price-tag {
+                font-style: italic;
+            }
+        }
+        
+        .description {
+            text-align: left;
+            p {margin: 0;}
+        }
+
+        .actions {
+            padding: 1em;
+        }
+    }
+}

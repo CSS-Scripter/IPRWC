@@ -1,0 +1,19 @@
+<app-header></app-header>
+<div class="banner">
+    <div class="banner-text">
+        <h1>Buy some fucking planets</h1>
+        <p class="subtitle">Before they run out?</p>
+    </div>
+</div>
+
+<div class="shop">
+    <h2>Looks like we're selling some beauties today!</h2>
+    <div class="items" *ngIf="!loading">
+        <app-shop-item *ngFor="let product of products | keyvalue"
+            imageSrc="../../assets/moon.jpg" 
+            [title]=product.value.title
+            [description]=product.value.description 
+            [price]=product.value.price></app-shop-item>
+    </div>
+    <app-create-product></app-create-product>
+</div>

@@ -1,0 +1,36 @@
+@import "../../styling/variables.scss";
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: darken($white, 10);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, .2);
+
+    .title-container {
+        font-family: "Orbitron", sans-serif;
+        color: $red;
+        padding: 1em;
+        h1 {
+            margin: 0;
+        }
+    }
+
+    nav {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        color: $grey;
+
+        a {
+            color: $grey;
+            text-decoration: none;
+            padding: 1em 1em;
+            border-right: 1px solid $white;
+
+            &:hover {
+                cursor: pointer;
+                background: rgba(0, 0, 0, .1);
+            }
+        }
+    }
+}
