@@ -23,6 +23,11 @@ const updateProductQuery = {text:
     'WHERE product_id = $5;'
 }
 
+const deleteProductQuery = {text:
+    'DELETE FROM products ' +
+    'WHERE product_id = $1;'
+}
+
 async function getAllProducts() {
     const pool = openPool()
     const {err, rows} = await pool.query(getAllQuery).catch((err) => {
@@ -32,6 +37,7 @@ async function getAllProducts() {
     let products = []
     if (err) console.error(err)
     else products = rows
+    await pool.end()
     return products
 }
 
@@ -45,6 +51,7 @@ async function getProductById(id) {
     let product = {}
     if (err) console.error(err)
     else product = rows[0]
+    await pool.end()
     return product
 }
 
@@ -58,6 +65,7 @@ async function createProduct(product) {
     let productId = ''
     if (err) console.error(err)
     else productId = rows[0].product_id
+    await pool.end()
     return productId
 }
 
@@ -65,7 +73,16 @@ async function updateProduct(product) {
     const pool = openPool()
     const values = [product.name, product.description, product.image, product.price, product.id]
     const {err} = await pool.query({...updateProductQuery, values}).catch((err) => err)
+    await pool.end()
     return err
 }
 
-module.exports = { getAllProducts, getProductById, createProduct, updateProduct }
+async function deleteProduct(id) {
+    const pool = openPool()
+    const values = [id]
+    const {err} = await pool.query({...deleteProductQuery, values}).catch((err) => err)
+    await pool.end()
+    return err
+}
+
+module.exports = { getAllProducts, getProductById, createProduct, updateProduct, deleteProduct }

@@ -1,5 +1,7 @@
 const router = require('express').Router()
 const productService = require('../service/product.service')
+const auth = require('../service/auth.service')
+const roles = require('../util/roles.enum')
 
 router.get('/', getAllProducts)
 router.post('/', createProduct)
@@ -17,36 +19,34 @@ async function getProductById(req, res) {
     return res.status(200).json(product)
 }
 
-async function createProduct(req, res) {
-    if (req.user.role !== 'admin') {
-        res.status(403).send('forbidden')
-    } else {
+function createProduct(req, res) {
+    return auth.authorizeFunctionToRole(req, res, roles.admin, async (req, res) => {
         const product = req.body
         const product_id = await productService.createProduct(product)
         if (product_id.trim().length === 0) 
             return res.status(500).send('internal server error')
         return res.status(200).send(product_id)
-    }
+    })
 }
 
 async function updateProduct(req, res) {
-    if (req.user.role !== 'admin') {
-        res.status(403).send('forbidden')
-    } else {
+    return auth.authorizeFunctionToRole(req, res, roles.admin, async (req, res) => {
         const product = req.body
         product.id = req.params['id']
         const err = await productService.updateProduct(product)
         if (err) return res.status(500).send('internal server error')
-        else return res.status(200).send('OK')
-    }
+        return res.status(200).send('OK')
+    })
 }
 
 async function deleteProduct(req, res) {
-    if (req.user.role !== 'admin') {
-        res.status(403).send('forbidden')
-    } else {
-        res.status(200).send('OK')
-    }
+    return auth.authorizeFunctionToRole(req, res, roles.admin, async (req, res) => {    
+        const err = await productService.deleteProduct(req.params['id'])
+        if (err) res.status(500).send('internal server error')
+        return res.status(200).send('OK')
+    })
 }
+
+
 
 module.exports = { router }

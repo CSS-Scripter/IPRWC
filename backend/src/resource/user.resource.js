@@ -29,4 +29,5 @@ async function register(req, res) {
     return res.status(200).send(uuid)
 }
 
+
 module.exports = { router }

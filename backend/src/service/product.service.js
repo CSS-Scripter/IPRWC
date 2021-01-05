@@ -27,6 +27,10 @@ async function updateProduct(product) {
     return productDAO.updateProduct(updatedProduct)
 }
 
+function deleteProduct(id) {
+    return productDAO.deleteProduct(id)
+}
+
 function validateProduct(product) {
     let valid = true
     const fields = ['name', 'description', 'image']
@@ -49,4 +53,4 @@ function parseProduct(product) {
     }
 }
 
-module.exports = { getAllProducts, getProductById, createProduct, updateProduct }
+module.exports = { getAllProducts, getProductById, createProduct, updateProduct, deleteProduct, parseProduct }
