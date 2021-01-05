@@ -26,7 +26,7 @@ function parseUser(sqlUser) {
 
 function registerUser(user) {
     let valid = true
-    const fields = ['name', 'password', 'email']
+    const fields = ['name', 'password', 'email', 'street', 'postal', 'city', 'housenumber']
     for (let field of fields) {
         if (field.trim().length === 0) {
             valid = false

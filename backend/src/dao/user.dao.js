@@ -6,8 +6,8 @@ const basicAuthQuery = {text:
     'WHERE user_email = $1;'
 }
 const createUserQuery = {text: 
-    'INSERT INTO users(user_name, user_password, user_email, user_role) ' + 
-    'VALUES($1, $2, $3, \'user\') ' +
+    'INSERT INTO users(user_name, user_password, user_email, user_role, user_street, user_postal, user_city, postal_housenumber) ' + 
+    'VALUES($1, $2, $3, \'user\', $4, $5, $6, $7) ' +
     'RETURNING user_id;'
 }
 
@@ -27,7 +27,7 @@ async function getUserByEmail(email) {
 
 async function createUser(user) {
     const pool = openPool()
-    const values = [user.name, user.password, user.email]
+    const values = [user.name, user.password, user.email, user.street, user.postal, user.city, user.housenumber]
     const { err, rows} = await pool.query({...createUserQuery, values}).catch((err) => {
         return {err, rows: null}
     })
