@@ -31,7 +31,7 @@ async function register(req, res) {
     return res.status(200).send(uuid)
 }
 
-function register(req, res) {
+function checkToken(req, res) {
     return auth.authorizeFunctionToRole(req, res, roles.user, (req, res) => {
         if (req.user) {
             return res.status(200).send('valid')

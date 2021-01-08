@@ -1,0 +1,13 @@
+.spacer {
+    flex: 1 1 auto;
+}
+
+button.first {
+    margin-left: 1em;
+}
+
+button {
+    font-size: 14px;
+    text-transform: uppercase;
+    margin: 0 .3em;
+}
