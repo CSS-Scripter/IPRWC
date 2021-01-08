@@ -2,9 +2,11 @@ const router = require('express').Router()
 
 const auth = require('../service/auth.service')
 const userService = require('../service/user.service')
+const roles = require('../util/roles.enum')
 
 router.get('/login', login)
 router.post('/register', register)
+router.get('/check-token', checkToken)
 
 async function login(req, res) {
     if (!req.headers.authorization || req.headers.authorization.indexOf('Basic ') === -1) {
@@ -27,6 +29,15 @@ async function register(req, res) {
         return res.status(500).send('internal server error')
     }
     return res.status(200).send(uuid)
+}
+
+function register(req, res) {
+    return auth.authorizeFunctionToRole(req, res, roles.user, (req, res) => {
+        if (req.user) {
+            return res.status(200).send('valid')
+        }
+        return res.status(401).send('invalid')
+    })
 }
 
 
