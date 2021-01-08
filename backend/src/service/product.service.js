@@ -6,7 +6,7 @@ async function getAllProducts() {
     for (let product of products) {
         parsedProducts.push(parseProduct(product))
     }
-    return products
+    return parsedProducts
 }
 
 async function getProductById(id) {

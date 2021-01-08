@@ -6,10 +6,9 @@ import { AuthService } from "./auth.service";
 export class ApiService{
     constructor(private http: HttpClient, private auth: AuthService) {}
 
-    public get<T>(url: string){
-        return this.http.get<T>(url, 
+    public get(path: string){
+        return this.http.get(`http://localhost:3000${path}`, 
             {
-                withCredentials: true, 
                 headers: {
                     "Authorization": `Bearer ${this.auth.getToken()}`
                 }

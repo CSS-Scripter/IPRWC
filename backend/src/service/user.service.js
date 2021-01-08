@@ -3,15 +3,20 @@ const userDAO = require('../dao/user.dao')
 
 async function getUserByBasicAuth(email, password) {
     const user = await getUserByEmail(email)
-    if (bcrypt.compareSync(password, user.password)) {
-        return user
+    if (user) {
+        if (bcrypt.compareSync(password, user.password)) {
+            return user
+        }
     }
     return null
 }
 
 async function getUserByEmail(email) {
     const user = await userDAO.getUserByEmail(email)
-    return parseUser(user)
+    if (user) {
+        return parseUser(user)
+    }
+    return user
 }
 
 function parseUser(sqlUser) {
@@ -20,7 +25,9 @@ function parseUser(sqlUser) {
         name: sqlUser.user_name, 
         password: sqlUser.user_password, 
         email: sqlUser.user_email, 
-        role: sqlUser.user_role
+        role: sqlUser.user_role,
+        street: sqlUser.address_street,
+        
     }
 }
 
@@ -34,6 +41,7 @@ function registerUser(user) {
         }
     }
     if (valid) {
+        user.email = user.email.toLowerCase()
         user.password = bcrypt.hashSync(user.password, 10)
         return userDAO.createUser(user)
     } else {

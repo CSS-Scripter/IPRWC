@@ -1,0 +1,72 @@
+<div class="centered">
+    <h1>Login</h1>
+    <form [formGroup]=registerFormGroup>
+        <mat-form-field class="full-width">
+            <mat-label>Name</mat-label>
+            <input type="text" matInput formControlName="name" placeholder="Foo Bar">
+            <mat-error *ngIf="nameFormControl.hasError('required')">
+              Name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput formControlName="email" placeholder="Ex. Foo@Bar.test">
+          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput formControlName="password">
+            <mat-error *ngIf="passwordFormControl.hasError('required')">
+              Password is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <mat-label>Repeat Password</mat-label>
+            <input type="password" matInput formControlName="repeatPassword">
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <mat-label>Street</mat-label>
+            <input type="text" matInput formControlName="street">
+            <mat-error *ngIf="streetFormControl.hasError('required')">
+              Street is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <mat-label>HouseNumber</mat-label>
+            <input type="number" matInput formControlName="housenumber">
+            <mat-error *ngIf="housenumberFormControl.hasError('required')">
+              Huisenumber is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>Postal Code</mat-label>
+            <input type="text" matInput formControlName="postal">
+            <mat-error *ngIf="postalFormControl.hasError('required')">
+              Postal Code is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>City</mat-label>
+            <input type="text" matInput formControlName="city">
+            <mat-error *ngIf="cityFormControl.hasError('required')">
+              City is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <p *ngIf="!repeatPassword">Passwords don't match</p> 
+          <p *ngIf="!registerSucces">Something went wrong, try again later</p>
+
+          <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+          <button mat-raised-button color="warn" (click)="clearForm()">Clear</button>
+      </form>
+</div>
