@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from '../models/user.model';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -75,7 +76,16 @@ export class RegisterComponent implements OnInit {
   async submit() {
     if (this.registerFormGroup.valid) {
       if (this.checkPasswords()) {
-        // REGISTER USER
+        const user = new User()
+        user.name = this.nameFormControl.value
+        user.email = this.emailFormControl.value
+        user.password = this.passwordFormControl.value
+        user.housenumber = this.housenumberFormControl.value
+        user.street = this.streetFormControl.value
+        user.postal = this.postalFormControl.value
+        user.city = this.cityFormControl.value
+        console.log(JSON.stringify(user))
+        this.auth.register(user)
       }
     }
   }

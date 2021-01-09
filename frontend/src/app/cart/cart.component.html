@@ -1,0 +1,41 @@
+<div class="cart">
+
+
+      <mat-horizontal-stepper>
+        <mat-step label="Check Order">
+            <mat-list role="list">
+                <div mat-subheader>Cart </div>
+                <mat-divider></mat-divider>
+                <mat-list-item role="listitem" *ngFor="let cartItem of getCart()">
+                    <mat-icon mat-list-icon>local_mall</mat-icon>
+                    <div mat-line>{{cartItem.name}}</div>
+                    <div mat-line>
+                        <button mat-icon-button color="primary" (click)="decreaseAmount(cartItem)"><mat-icon>remove</mat-icon></button>
+                        {{cartItem.amount}}
+                        <button mat-icon-button color="primary" (click)="increaseAmount(cartItem)"><mat-icon>add</mat-icon></button>
+                    </div>
+                </mat-list-item>
+            </mat-list>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+
+        <mat-step label="Login" *ngIf="!isLoggedIn()">
+            <h1>Please log in or create an account to continue to checkout</h1>
+            <button mat-raised-button color="accent" routerLink="/register">Register</button>
+            <button mat-raised-button color="primary" routerLink="/login">Login</button>
+            <div class="actions">
+                <button mat-button matStepperPrevious>Back</button>
+            </div>
+        </mat-step>
+
+        <mat-step label="Pay" *ngIf="isLoggedIn()">
+          <h1>Complete Order</h1>
+          <button mat-button (click)="createOrder()">Pay</button>
+        </mat-step>
+      
+
+      </mat-horizontal-stepper>
+
+</div>

@@ -29,18 +29,19 @@ function getOrderById(req, res) {
         if (order) {
             return res.status(200).json(order)
         }
-        return res.status(404).send('Not found')
+        return res.status(404).json({data: 'Not found'})
     })
 }
 
 function createOrder(req, res) {
     return auth.authorizeFunctionToRole(req, res, roles.user, async (req, res) => {
         const orderedProducts = req.body
+        console.log(orderedProducts)
         const orderId = await orderService.createOrder(orderedProducts, req.user)
         if (orderId) {
-            return res.status(200).send(orderId)
+            return res.status(200).json({data: orderId})
         }
-        return res.status(500).send('Internal server error')
+        return res.status(500).json({data: 'Internal server error'})
     })
 }
 

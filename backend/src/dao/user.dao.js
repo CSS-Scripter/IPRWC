@@ -6,7 +6,7 @@ const basicAuthQuery = {text:
     'WHERE user_email = $1;'
 }
 const createUserQuery = {text: 
-    'INSERT INTO users(user_name, user_password, user_email, user_role, user_street, user_postal, user_city, postal_housenumber) ' + 
+    'INSERT INTO users(user_name, user_password, user_email, user_role, user_street, user_postal, user_city, user_housenumber) ' + 
     'VALUES($1, $2, $3, \'user\', $4, $5, $6, $7) ' +
     'RETURNING user_id;'
 }

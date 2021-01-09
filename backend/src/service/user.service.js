@@ -26,16 +26,18 @@ function parseUser(sqlUser) {
         password: sqlUser.user_password, 
         email: sqlUser.user_email, 
         role: sqlUser.user_role,
-        street: sqlUser.address_street,
-        
+        street: sqlUser.user_street,
+        housenumber: sqlUser.user_housenumber,
+        city: sqlUser.user_city,
+        postal: sqlUser.user_postal
     }
 }
 
 function registerUser(user) {
     let valid = true
-    const fields = ['name', 'password', 'email', 'street', 'postal', 'city', 'housenumber']
+    const fields = ['name', 'password', 'email', 'street', 'postal', 'city']
     for (let field of fields) {
-        if (field.trim().length === 0) {
+        if (user[field].trim().length === 0) {
             valid = false
             break
         }

@@ -2,10 +2,10 @@
     <span>WE SELL PLANETS</span>
     <button mat-button class="first" routerLink="">Shop</button>
     <span class="spacer"></span>
-    <button mat-icon-button><mat-icon aria-label="Shopping Cart Icon" aria-hidden="false">shopping_cart</mat-icon></button>
+    <button mat-icon-button routerLink="cart"><mat-icon aria-label="Shopping Cart Icon" aria-hidden="false">shopping_cart</mat-icon></button>
     <ng-template [ngIf]="isLoggedIn()" [ngIfElse]="loggedOut">
-        <button mat-button>Orders</button>
-        <button mat-button (click)=logout()>Log out</button>
+        <button mat-button routerLink="orders">Orders</button>
+        <button mat-button (click)=logout() routerLink="/">Log out</button>
     </ng-template>
     <ng-template #loggedOut>
         <button mat-button routerLink="register">Register</button>

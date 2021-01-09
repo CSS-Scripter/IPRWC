@@ -1,0 +1,17 @@
+<div class="product-page">
+    <mat-card *ngIf="product">
+        <img mat-card-image [src]=product.image alt="Product image">
+        <mat-card-content>
+            <h2>{{product.name}}</h2>
+            <p class="description">{{product.description}}</p>
+            <span class="price">&euro;{{product.price}}</span>
+        </mat-card-content>
+        <mat-card-actions>
+            <mat-form-field class="example-form-field">
+                <mat-label>Amount</mat-label>
+                <input matInput type="number" [(ngModel)]="amount">
+              </mat-form-field>
+            <button mat-button (click)="addProductToCart()">Add to cart</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

@@ -23,7 +23,6 @@ export class ProductService{
     }
 
     private emitProducts() {
-        console.log("Emitting", this.products)
         this.products$.next(this.products)
     }
 
@@ -31,7 +30,14 @@ export class ProductService{
         return this.products$;
     }
 
-    public getProductById(id) {
-        return this.products.find((product) => product.id === id)
+    public async getProductById(id) {
+        const localProduct = (this.products || []).find((product) => product.id === id)
+        if (localProduct) {
+            return localProduct
+        }
+        return await this.api.get(`/products/${id}`).toPromise().catch((e) => {
+            console.error(e)
+            return null
+        })
     }
 }
