@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Subject } from "rxjs";
+import { environment } from "src/environments/environment";
 import { User } from "../models/user.model";
 
 @Injectable({providedIn: "root"})
@@ -10,6 +11,7 @@ export class AuthService {
     private valid = false;
     private admin = false;
     private auth$ = new Subject()
+    private url = environment.apiUrl
 
     constructor(private http: HttpClient, private _snackBar: MatSnackBar) {
         this.token = localStorage.getItem("JWT_TOKEN");
@@ -18,7 +20,7 @@ export class AuthService {
 
     public async validateToken() {
         if (this.token) {
-            const response = await this.http.get("http://127.0.0.1:3000/check-token", 
+            const response = await this.http.get(`${this.url}/check-token`, 
                     {headers: {"Authorization": `Bearer ${this.token}`}}).toPromise().catch((err) => {
                         console.error(err)
                     })
@@ -49,7 +51,7 @@ export class AuthService {
             return false;
         }
         const authString = window.btoa(email + ":" + password);
-        const response = await this.http.get("http://127.0.0.1:3000/login", 
+        const response = await this.http.get(`${this.url}/login`, 
             {headers: {"Authorization": `Basic ${authString}`}}).toPromise().catch((e) => {
                 console.error(e)
                 return false
@@ -63,7 +65,7 @@ export class AuthService {
     }
 
     public async register(user: User) {
-        const response = await this.http.post("http://127.0.0.1:3000/register", user).toPromise().catch((e) => {
+        const response = await this.http.post(`${this.url}/register`, user).toPromise().catch((e) => {
             console.error(e)
             return null
         })
