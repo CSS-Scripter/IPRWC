@@ -22,7 +22,6 @@ export class OrdersComponent implements OnInit {
   parseOrders(orders) {
     const orderArray = []
     for(let id in orders) {
-      console.log(id)
       orderArray.push({id, ...orders[id]})
     }
     return orderArray

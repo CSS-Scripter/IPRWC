@@ -1,17 +1,17 @@
 <mat-toolbar color="primary">
     <span>WE SELL PLANETS</span>
-    <button mat-button class="first" routerLink="">Shop</button>
+    <button mat-button class="first" routerLink="/">Shop</button>
     <span class="spacer"></span>
-    <button mat-icon-button routerLink="cart"><mat-icon aria-label="Shopping Cart Icon" aria-hidden="false">shopping_cart</mat-icon></button>
+    <button mat-icon-button routerLink="/cart"><mat-icon aria-label="Shopping Cart Icon" aria-hidden="false">shopping_cart</mat-icon></button>
     <ng-template [ngIf]="isLoggedIn()" [ngIfElse]="loggedOut">
-        <button mat-button routerLink="orders">Orders</button>
+        <button mat-button routerLink="/orders">Orders</button>
         <button mat-button (click)=logout() routerLink="/">Log out</button>
     </ng-template>
     <ng-template #loggedOut>
-        <button mat-button routerLink="register">Register</button>
-        <button mat-button routerLink="login">Log In</button>
+        <button mat-button routerLink="/register">Register</button>
+        <button mat-button routerLink="/login">Log In</button>
     </ng-template>
     <ng-template [ngIf]="isAdmin()">
-        <button mat-button>Admin</button>
+        <button mat-button routerLink="/admin">Admin</button>
     </ng-template>
 </mat-toolbar>

@@ -1,0 +1,39 @@
+<div class="centered">
+    <h1>Edit Product</h1>
+    <form [formGroup]=productFormGroup>
+        <mat-form-field class="full-width">
+          <mat-label>Name</mat-label>
+          <input type="text" matInput formControlName="name">
+          <mat-error *ngIf="nameFormControl.hasError('required')">
+            Name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>Description</mat-label>
+            <input type="text" matInput formControlName="description">
+            <mat-error *ngIf="descriptionFormControl.hasError('required')">
+              Description is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <mat-label>Image</mat-label>
+            <input type="text" matInput formControlName="image">
+            <mat-error *ngIf="imageFormControl.hasError('required')">
+              Image is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <mat-label>Price</mat-label>
+            <input type="number" matInput formControlName="price">
+            <mat-error *ngIf="priceFormControl.hasError('required')">
+              Price is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+ 
+        <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+        <button mat-raised-button color="warn" (click)="cancel()">Cancel</button>
+      </form>
+</div>

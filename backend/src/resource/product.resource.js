@@ -35,7 +35,7 @@ async function updateProduct(req, res) {
         product.id = req.params['id']
         const err = await productService.updateProduct(product)
         if (err) return res.status(500).send('internal server error')
-        return res.status(200).send('OK')
+        return res.status(200).json({data: 'OK'})
     })
 }
 
@@ -43,7 +43,7 @@ async function deleteProduct(req, res) {
     return auth.authorizeFunctionToRole(req, res, roles.admin, async (req, res) => {    
         const err = await productService.deleteProduct(req.params['id'])
         if (err) res.status(500).send('internal server error')
-        return res.status(200).send('OK')
+        return res.status(200).json({data: 'OK'})
     })
 }
 

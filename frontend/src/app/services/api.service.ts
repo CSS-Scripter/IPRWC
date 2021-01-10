@@ -24,4 +24,22 @@ export class ApiService{
             }
         })
     }
+    
+    public put(path: string, body) {
+        return this.http.put(`http://localhost:3000${path}`, body, {
+            headers: {
+                "Authorization": `Bearer ${this.auth.getToken()}`,
+                "Content-Type": "application/json"
+            }
+        })
+    }
+    
+    public delete(path: string) {
+        return this.http.delete(`http://localhost:3000${path}`, {
+            headers: {
+                "Authorization": `Bearer ${this.auth.getToken()}`,
+                "Content-Type": "application/json"
+            }
+        })
+    }
 }

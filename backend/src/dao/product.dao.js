@@ -2,7 +2,8 @@ const { openPool } = require('../database/db')
 
 const getAllQuery = {text:
     'SELECT * ' +
-    'FROM products;'
+    'FROM products ' +
+    'WHERE product_visibility = true;'
 }
 
 const getSingleQuery = {text:
@@ -24,7 +25,10 @@ const updateProductQuery = {text:
 }
 
 const deleteProductQuery = {text:
-    'DELETE FROM products ' +
+    // 'DELETE FROM products ' +
+    // 'WHERE product_id = $1;'
+    'UPDATE products ' +
+    'SET product_visibility = false ' +
     'WHERE product_id = $1;'
 }
 

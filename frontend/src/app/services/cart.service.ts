@@ -52,7 +52,6 @@ export class CartService {
     }
 
     private writeToStorage() {
-        console.log(this.cart)
         localStorage.setItem("CART", JSON.stringify(this.cart))
     }
 
@@ -62,5 +61,6 @@ export class CartService {
 
     createOrder() {
         this.orderService.createOrder([...this.cart])
+        this.clearCart()
     }
 }

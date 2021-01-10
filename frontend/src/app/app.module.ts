@@ -32,6 +32,9 @@ import { CartComponent } from './cart/cart.component';
 import { CartService } from './services/cart.service';
 import { OrderService } from './services/order.service';
 import { OrdersComponent } from './orders/orders.component';
+import { AdminComponent } from './admin/admin.component';
+import { AuthGuardService } from './services/authGuard.service';
+import { EditProductComponent } from './admin/edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,8 @@ import { OrdersComponent } from './orders/orders.component';
     ProductComponent,
     CartComponent,
     OrdersComponent,
+    AdminComponent,
+    EditProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,7 +74,8 @@ import { OrdersComponent } from './orders/orders.component';
     ApiService,
     ProductService,
     CartService,
-    OrderService
+    OrderService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,18 @@
+.description {
+    font-weight: 400;
+    font-size: 18px;
+    margin-bottom: 1.2em;
+}
+
+.price {
+    font-weight: 300;
+    font-style: italic;
+}
+
+.products {
+    padding: 1em;
+}
+
+.card {
+    max-width: 320px;
+}

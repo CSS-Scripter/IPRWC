@@ -21,6 +21,7 @@ CREATE TABLE products(
     product_description VARCHAR(100) NOT NULL,
     product_image VARCHAR(100) NOT NULL,
     product_price FLOAT NOT NULL,
+    product_visibility BOOLEAN NOT NULL DEFAULT FALSE,
     PRIMARY KEY(product_id)
 );
 

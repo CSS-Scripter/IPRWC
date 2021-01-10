@@ -40,4 +40,35 @@ export class ProductService{
             return null
         })
     }
+
+    public async updateProduct(product) {
+        const response = await this.api.put(`/products/${product.id}`, product).toPromise().catch((e) => {
+            console.error(e)
+            return null
+        })
+        if (response) {
+            this.deleteLocalProduct(product)
+            this.products.push(product)
+            this.emitProducts()
+            return true
+        }
+        return false
+    }
+
+    public async deleteProduct(product) {
+        const response = await this.api.delete(`/products/${product.id}`).toPromise().catch((e) => {
+            console.error(e)
+            return null
+        })
+        if (response) {
+            this.deleteLocalProduct(product)
+            this.emitProducts()
+            return true
+        }
+        return false
+    }
+
+    private deleteLocalProduct(product) {
+        this.products = this.products.filter((p) => p.id != product.id)
+    }
 }

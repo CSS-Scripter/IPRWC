@@ -6,6 +6,9 @@ import { ProductComponent } from './products/product/product.component';
 import { RegisterComponent } from './register/register.component';
 import { CartComponent } from './cart/cart.component';
 import { OrdersComponent } from './orders/orders.component';
+import { AdminComponent } from './admin/admin.component';
+import { AuthGuardService } from './services/authGuard.service';
+import { EditProductComponent } from './admin/edit-product/edit-product.component';
 
 const routes: Routes = [
   {
@@ -25,6 +28,12 @@ const routes: Routes = [
   },
   {
     path: "orders", component: OrdersComponent
+  },
+  {
+    path: "admin", component: AdminComponent, canActivate: [AuthGuardService],
+  },
+  {
+    path: "admin/products/:id", component: EditProductComponent
   }
 ];
 
