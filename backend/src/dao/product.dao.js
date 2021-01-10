@@ -25,8 +25,6 @@ const updateProductQuery = {text:
 }
 
 const deleteProductQuery = {text:
-    // 'DELETE FROM products ' +
-    // 'WHERE product_id = $1;'
     'UPDATE products ' +
     'SET product_visibility = false ' +
     'WHERE product_id = $1;'

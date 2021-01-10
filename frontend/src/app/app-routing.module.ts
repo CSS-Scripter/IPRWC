@@ -30,10 +30,10 @@ const routes: Routes = [
     path: "orders", component: OrdersComponent
   },
   {
-    path: "admin", component: AdminComponent, canActivate: [AuthGuardService],
+    path: "admin", component: AdminComponent, canActivate: [AuthGuardService]
   },
   {
-    path: "admin/products/:id", component: EditProductComponent
+    path: "admin/products/:id", component: EditProductComponent, canActivate: [AuthGuardService]
   }
 ];
 
