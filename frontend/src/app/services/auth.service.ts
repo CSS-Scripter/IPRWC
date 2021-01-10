@@ -18,7 +18,7 @@ export class AuthService {
 
     public async validateToken() {
         if (this.token) {
-            const response = await this.http.get("http://localhost:3000/check-token", 
+            const response = await this.http.get("http://127.0.0.1:3000/check-token", 
                     {headers: {"Authorization": `Bearer ${this.token}`}}).toPromise().catch((err) => {
                         console.error(err)
                     })
@@ -49,7 +49,7 @@ export class AuthService {
             return false;
         }
         const authString = window.btoa(email + ":" + password);
-        const response = await this.http.get("http://localhost:3000/login", 
+        const response = await this.http.get("http://127.0.0.1:3000/login", 
             {headers: {"Authorization": `Basic ${authString}`}}).toPromise().catch((e) => {
                 console.error(e)
                 return false
@@ -63,7 +63,7 @@ export class AuthService {
     }
 
     public async register(user: User) {
-        const response = await this.http.post("http://localhost:3000/register", user).toPromise().catch((e) => {
+        const response = await this.http.post("http://127.0.0.1:3000/register", user).toPromise().catch((e) => {
             console.error(e)
             return null
         })

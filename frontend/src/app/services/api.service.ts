@@ -5,10 +5,13 @@ import { JSDocTagName } from "@angular/compiler/src/output/output_ast";
 
 @Injectable({providedIn: "root"})
 export class ApiService{
+
+    private host = "127.0.0.1:3000"
+
     constructor(private http: HttpClient, private auth: AuthService) {}
 
     public get(path: string){
-        return this.http.get(`http://localhost:3000${path}`, 
+        return this.http.get(`${this.host}${path}`, 
             {
                 headers: {
                     "Authorization": `Bearer ${this.auth.getToken()}`
@@ -17,7 +20,7 @@ export class ApiService{
     }
 
     public post(path: string, body) {
-        return this.http.post(`http://localhost:3000${path}`, body, {
+        return this.http.post(`${this.host}${path}`, body, {
             headers: {
                 "Authorization": `Bearer ${this.auth.getToken()}`,
                 "Content-Type": "application/json"
@@ -26,7 +29,7 @@ export class ApiService{
     }
     
     public put(path: string, body) {
-        return this.http.put(`http://localhost:3000${path}`, body, {
+        return this.http.put(`${this.host}${path}`, body, {
             headers: {
                 "Authorization": `Bearer ${this.auth.getToken()}`,
                 "Content-Type": "application/json"

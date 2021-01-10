@@ -84,7 +84,6 @@ export class RegisterComponent implements OnInit {
         user.street = this.streetFormControl.value
         user.postal = this.postalFormControl.value
         user.city = this.cityFormControl.value
-        console.log(JSON.stringify(user))
         this.auth.register(user)
       }
     }
