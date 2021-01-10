@@ -25,7 +25,7 @@ function createProduct(req, res) {
         const product_id = await productService.createProduct(product)
         if (product_id.trim().length === 0) 
             return res.status(500).send('internal server error')
-        return res.status(200).send(product_id)
+        return res.status(200).json({data: product_id})
     })
 }
 

@@ -30,6 +30,20 @@ export class ProductService{
         return this.products$;
     }
 
+    public async createProduct(product) {
+        const response = await this.api.post("/products", product).toPromise().catch((e) => {
+            console.error(e)
+            return null
+        })
+        if (response) {
+            product.id = response['data']
+            this.products.push(product)
+            this.emitProducts()
+            return true
+        }
+        return false
+    }
+
     public async getProductById(id) {
         const localProduct = (this.products || []).find((product) => product.id === id)
         if (localProduct) {
