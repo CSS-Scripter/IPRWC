@@ -6,7 +6,7 @@ import { JSDocTagName } from "@angular/compiler/src/output/output_ast";
 @Injectable({providedIn: "root"})
 export class ApiService{
 
-    private host = "127.0.0.1:3000"
+    private host = "http://127.0.0.1:3000"
 
     constructor(private http: HttpClient, private auth: AuthService) {}
 
