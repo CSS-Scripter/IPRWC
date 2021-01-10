@@ -13,8 +13,8 @@ const getSingleQuery = {text:
 }
 
 const createProductQuery = {text:
-    'INSERT INTO products(product_name, product_description, product_image, product_price)' +
-    'VALUES($1, $2, $3, $4) ' +
+    'INSERT INTO products(product_name, product_description, product_image, product_price, product_visibilty)' +
+    'VALUES($1, $2, $3, $4, true) ' +
     'RETURNING product_id;'
 }
 
