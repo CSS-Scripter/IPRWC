@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http"
 import { AuthService } from "./auth.service";
-import { JSDocTagName } from "@angular/compiler/src/output/output_ast";
+import { environment } from "src/environments/environment";
 
 @Injectable({providedIn: "root"})
 export class ApiService{
 
-    private host = "http://127.0.0.1:3000"
+    private host = environment.apiUrl
 
     constructor(private http: HttpClient, private auth: AuthService) {}
 
